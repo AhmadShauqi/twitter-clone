@@ -1,30 +1,28 @@
 import { jwtDecode } from "jwt-decode";
-import { useEffect, useState } from "react";
-import { Button, Col, Image, Nav, Row } from "react-bootstrap";
+import { useEffect } from "react";
+import { Button, Col, Image, Nav, Row, Spinner } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import ProfilePostCard from "./ProfilePostCard";
+import { fetchPostsByUser } from "../features/posts/postsSlice";
 
 export default function ProfileMidBody() {
-    const [posts, setPosts] = useState([]);
-    const url = "https://pbs.twimg.com/profile_banners/83072625/1602845571/1500x500";
-    const pic = "https://pbs.twimg.com/profile_images/1587405892437221376/h167Jlb2_400x400.jpg";
+    const url =
+        "https://pbs.twimg.com/profile_banners/778858153597218816/1642245520/1500x500";
+    const pic =
+        "https://scontent.fkul15-1.fna.fbcdn.net/v/t39.30808-6/467872696_10234665840285759_3352548463293303266_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=A0GZteeyM2EQ7kNvgHv4u_D&_nc_zt=23&_nc_ht=scontent.fkul15-1.fna&_nc_gid=AVVwolhxl_V_yTD6oT6pnTr&oh=00_AYABOKo2Em8TFiq1b1eRmn9B1dcK-GhWaD-j_WTsViK8eA&oe=677BDF68";
 
-    // Fetch posts based on user id
-    const fetchPosts = (userId) => {
-        fetch(`https://e6f17146-25ef-4a08-a92b-186e70e9e5e4-00-1j1cthgc5snzh.pike.replit.dev/posts/user/${userId}`)
-            .then((response) => response.json())
-            .then((data) => setPosts(data))
-            .catch((error) => console.error("Error:", error));
-    }
+    const dispatch = useDispatch();
+    const posts = useSelector((state) => state.posts.posts);
+    const loading = useSelector((state) => state.posts.loading);
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
         if (token) {
             const decodedToken = jwtDecode(token);
             const userId = decodedToken.id;
-            fetchPosts(userId);
+            dispatch(fetchPostsByUser(userId));
         }
-    }, []);
-
+    }, [dispatch]);
 
     return (
         <Col sm={6} className="bg-light" style={{ border: "1px solid lightgrey" }}>
@@ -50,20 +48,21 @@ export default function ProfileMidBody() {
                 </Col>
             </Row>
 
-            <p className="mt-5" style={{ margin: 0, fontWeight: "bold", fontSize: "15px" }}>
+            <p
+                className="mt-5"
+                style={{ margin: 0, fontWeight: "bold", fontSize: "15px" }}
+            >
                 Shauqi
             </p>
-
             <p style={{ marginBottom: "2px" }}>@ahmad.shauqi</p>
-
-            <p>I help people switch careers to be a software developer at sigmaschool.co</p>
-
+            <p>
+                I help people switch careers to be a software developer at
+                sigmaschool.co
+            </p>
             <p>Entrepreneur</p>
-
             <p>
                 <strong>271</strong> Following <strong>610</strong> Followers
             </p>
-
             <Nav variant="underline" defaultActiveKey="/home" justify>
                 <Nav.Item>
                     <Nav.Link eventKey="/home">Tweets</Nav.Link>
@@ -81,9 +80,16 @@ export default function ProfileMidBody() {
                     <Nav.Link eventKey="link-4">Likes</Nav.Link>
                 </Nav.Item>
             </Nav>
-            {posts.length > 0 && posts.map((post) => (
-                <ProfilePostCard key={post.id} content={post.content} postId={post.id} />
+            {loading && (
+                <Spinner animation="border" className="ms-3 mt-3" variant="primary" />
+            )}
+            {posts.map((post) => (
+                <ProfilePostCard
+                    key={post.id}
+                    content={post.content}
+                    postId={post.id}
+                />
             ))}
         </Col>
-    )
+    );
 }
