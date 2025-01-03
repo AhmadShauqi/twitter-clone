@@ -3,7 +3,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 const BASE_URL =
-    "https://a0793759-550f-419b-9bc5-2e5b3a385c27-00-21ju57pd08sle.pike.replit.dev";
+    "https://c1bdd823-aa5d-4da6-b508-72ada70452dd-00-1n8xfhxxxv36v.pike.replit.dev";
 
 //ASYNC THUNK FOR FETCHING A USER'S POSTS
 export const fetchPostsByUser = createAsyncThunk(

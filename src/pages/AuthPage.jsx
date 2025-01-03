@@ -7,7 +7,7 @@ import useLocalStorage from "use-local-storage";
 export default function AuthPage() {
     const loginImage = "https://sig1.co/img-twitter-1";
     const url =
-        "https://a0793759-550f-419b-9bc5-2e5b3a385c27-00-21ju57pd08sle.pike.replit.dev";
+        "https://c1bdd823-aa5d-4da6-b508-72ada70452dd-00-1n8xfhxxxv36v.pike.replit.dev";
     // values: null (no modal show), "login", "signup"
     const [modalShow, setModalShow] = useState(null);
     const handleShowSignUp = () => setModalShow("signup");
