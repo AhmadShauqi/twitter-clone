@@ -40,7 +40,6 @@ const postsSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchPostsByUser.fulfilled, (state, action) => {
             state.posts = action.payload;
-            console.log("test")
             state.loading = false;
         }),
             builder.addCase(savePost.fulfilled, (state, action) => {

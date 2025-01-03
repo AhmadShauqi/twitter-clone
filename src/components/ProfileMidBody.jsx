@@ -11,18 +11,17 @@ export default function ProfileMidBody() {
     const pic =
         "https://scontent.fkul15-1.fna.fbcdn.net/v/t39.30808-6/467872696_10234665840285759_3352548463293303266_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=A0GZteeyM2EQ7kNvgHv4u_D&_nc_zt=23&_nc_ht=scontent.fkul15-1.fna&_nc_gid=AVVwolhxl_V_yTD6oT6pnTr&oh=00_AYABOKo2Em8TFiq1b1eRmn9B1dcK-GhWaD-j_WTsViK8eA&oe=677BDF68";
 
-    const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts.posts);
     const loading = useSelector((state) => state.posts.loading);
 
-    useEffect(() => {
-        const token = localStorage.getItem("authToken");
-        if (token) {
-            const decodedToken = jwtDecode(token);
-            const userId = decodedToken.id;
-            dispatch(fetchPostsByUser(userId));
-        }
-    }, [dispatch]);
+    //useEffect(() => {
+    //    const token = localStorage.getItem("authToken");
+    //    if (token) {
+    //        const decodedToken = jwtDecode(token);
+    //        const userId = decodedToken.id;
+    //        dispatch(fetchPostsByUser(userId));
+    //    }
+    //}, [dispatch]);
 
     return (
         <Col sm={6} className="bg-light" style={{ border: "1px solid lightgrey" }}>
