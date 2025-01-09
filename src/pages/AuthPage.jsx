@@ -1,7 +1,9 @@
 import {
+    GoogleAuthProvider,
     createUserWithEmailAndPassword,
     getAuth,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signInWithPopup
 } from "firebase/auth";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
@@ -20,6 +22,7 @@ export default function AuthPage() {
     const [password, setPassword] = useState("");
     const [authToken, setAuthToken] = useLocalStorage("authToken", "");
     const navigate = useNavigate();
+    const provider = new GoogleAuthProvider();
 
     const auth = getAuth();
     const { currentUser } = useContext(AuthContext);
@@ -45,6 +48,16 @@ export default function AuthPage() {
         }
     };
 
+    const handleGoogleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await signInWithPopup(auth, provider);
+            console.log(res.user);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const handleClose = () => setModalShow(null);
 
     return (
@@ -65,7 +78,7 @@ export default function AuthPage() {
                     Join Twitter today.
                 </h2>
                 <Col sm={5} className="d-grid gap-2">
-                    <Button className="rounded-pill" variant="outline-dark">
+                    <Button className="rounded-pill" variant="outline-dark" onClick={handleGoogleLogin}>
                         <i className="bi bi-google"></i> Sign up with Google
                     </Button>
                     <Button className="rounded-pill" variant="outline-dark">
