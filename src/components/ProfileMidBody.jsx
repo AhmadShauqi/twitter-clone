@@ -10,7 +10,7 @@ export default function ProfileMidBody() {
     const url =
         "https://pbs.twimg.com/profile_banners/778858153597218816/1642245520/1500x500";
     const pic =
-        "https://scontent.fkul15-1.fna.fbcdn.net/v/t39.30808-6/467872696_10234665840285759_3352548463293303266_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=A0GZteeyM2EQ7kNvgHv4u_D&_nc_zt=23&_nc_ht=scontent.fkul15-1.fna&_nc_gid=AVVwolhxl_V_yTD6oT6pnTr&oh=00_AYABOKo2Em8TFiq1b1eRmn9B1dcK-GhWaD-j_WTsViK8eA&oe=677BDF68";
+        "https://pbs.twimg.com/profile_images/1839294511824121858/pol0zyxM_400x400.jpg";
 
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts.posts);

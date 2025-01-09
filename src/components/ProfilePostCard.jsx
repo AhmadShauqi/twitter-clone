@@ -101,7 +101,7 @@ export default function ProfilePostCard({ post }) {
                         show={showUpdateModal}
                         handleClose={handleCloseUpdateModal}
                         postId={postId}
-                        oroginalPostContent={content}
+                        originalPostContent={content}
                     />
                 </div>
             </Col>

@@ -27,6 +27,7 @@ export const updatePost = createAsyncThunk(
     "posts/updatePost",
     async ({ userId, postId, newPostContent, newFile }) => {
         try {
+
             //UPLOAD THE NEW FILE TO THE STORAGE IF IT EXISTS & GET ITS URL
             let newImageUrl;
             if (newFile) {
@@ -38,10 +39,12 @@ export const updatePost = createAsyncThunk(
             //REFERENCE TO THE EXISTING POST
             const postRef = doc(db, `users/${userId}/posts/${postId}`);
 
-            //GET THE CURRENT POST DATA
+            // //GET THE CURRENT POST DATA
             const postSnap = await getDoc(postRef);
+
             if (postSnap.exists()) {
                 const postData = postSnap.data();
+
                 //UPDATE THE POST CONTENT & IMAGE URL
                 const updatedData = {
                     ...postData,
