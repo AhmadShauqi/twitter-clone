@@ -62,8 +62,8 @@ export default function ProfilePostCard({ post }) {
             </Col>
 
             <Col>
-                <strong>Haris</strong>
-                <span> @haris.samingan · Apr 16</span>
+                <strong>Shauqi</strong>
+                <span> @ahmad.shauqi · Apr 16</span>
                 <p>{content}</p>
                 <Image src={imageUrl} style={{ width: 150 }} />
                 <div className="d-flex justify-content-between">
